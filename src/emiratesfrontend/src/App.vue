@@ -1,13 +1,13 @@
 <script>
-import NavBar from './components/NavBar';
-import FlightSearch from './views/FlightSearch';
+import NavBar from "./components/NavBar";
+import FlightSearch from "./views/FlightSearch";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     NavBar,
-    FlightSearch
+    FlightSearch,
   },
 
   data: () => ({
@@ -18,12 +18,12 @@ export default {
 
 <template>
   <v-app>
-    <NavBar/>
-    <br/><br/>
+    <NavBar />
+    <br /><br />
     <v-main>
       <v-container>
-        <v-spacer/>
-        <FlightSearch/>
+        <v-spacer />
+        <FlightSearch />
       </v-container>
     </v-main>
   </v-app>

@@ -1,22 +1,14 @@
 <template>
-  <v-app>
-    <NavBar />
-    <br /><br />
-    <v-main>
-      <v-container>
-        <v-spacer />
-        <FlightSearch />
-      </v-container>
-    </v-main>
-  </v-app>
+  <v-container>
+    <v-spacer />
+    <FlightSearch />
+  </v-container>
 </template>
 <script>
-import NavBar from "../components/NavBar";
-import FlightSearch from "../views/FlightSearch";
+import FlightSearch from "../components/FlightSearch";
 export default {
   name: "HomeView",
   components: {
-    NavBar,
     FlightSearch,
   },
 };

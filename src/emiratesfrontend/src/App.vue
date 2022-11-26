@@ -1,7 +1,7 @@
 <script>
-import HomeView from "./views/HomeView";
+import NavBar from "@/components/NavBar";
 export default {
-  components: { HomeView },
+  components: { NavBar },
   name: "App",
   data: () => ({
     //
@@ -10,9 +10,13 @@ export default {
 </script>
 
 <template>
-  <router-view>
-    <HomeView />
-  </router-view>
+  <v-app>
+    <NavBar />
+    <br /><br />
+    <v-main>
+      <router-view> </router-view>
+    </v-main>
+  </v-app>
 </template>
 
 

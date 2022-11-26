@@ -51,6 +51,7 @@
           </v-col>
         </v-row>
         <v-row class="d-flex justify-center">
+          <!-- search button -->
           <v-btn
             x-large
             depressed
@@ -83,7 +84,7 @@ export default {
   },
   methods: {
     getTripType() {
-      console.log(this.tripSelection);
+      //   console.log(this.tripSelection);
     },
   },
 };

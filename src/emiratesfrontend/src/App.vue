@@ -12,7 +12,6 @@ export default {
 <template>
   <v-app>
     <NavBar />
-    <br /><br />
     <v-main>
       <router-view> </router-view>
     </v-main>

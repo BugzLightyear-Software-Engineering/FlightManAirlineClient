@@ -1,1 +1,1 @@
-const airports = [];
+export const airports = ["New York", "Deli"];

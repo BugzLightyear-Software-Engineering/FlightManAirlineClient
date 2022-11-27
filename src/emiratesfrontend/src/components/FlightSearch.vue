@@ -1,7 +1,11 @@
 <template>
   <div>
     <br />
-    <v-card elevation="1" class="pa-2" outlined rounded="lg">
+    <v-card elevation="1" class="pa-0" outlined rounded="lg">
+      <v-img
+        height="250"
+        src="https://www.gstatic.com/travel-frontend/animation/hero/flights_3.svg"
+      ></v-img>
       <v-card-title> Search for Flights </v-card-title>
       <v-divider />
       <v-card-text>
@@ -24,24 +28,29 @@
           <!-- source airport text input -->
           <v-row class="d-flex align-top">
             <v-col cols="4">
-              <v-text-field
-                label="Leaving From"
+              <v-autocomplete
+                v-model="values"
+                :items="items"
                 outlined
                 rounded
                 prepend-inner-icon="mdi-map-marker"
-              ></v-text-field>
+                label="Leaving From"
+              ></v-autocomplete>
             </v-col>
+
             <!-- arrow icon -->
             <v-icon class="icon-class"> mdi-arrow-left-right </v-icon>
 
             <!-- dest airport text input -->
             <v-col cols="4">
-              <v-text-field
-                label="Going to"
+              <v-autocomplete
+                v-model="values"
+                :items="items"
                 outlined
                 rounded
                 prepend-inner-icon="mdi-map-marker"
-              ></v-text-field>
+                label="Going to"
+              ></v-autocomplete>
             </v-col>
             <!-- depart date picker -->
             <v-col>
@@ -82,6 +91,8 @@ export default {
   data() {
     return {
       tripSelection: "roundtrip",
+      items: this.$store.state.airports,
+      values: null,
     };
   },
   components: {

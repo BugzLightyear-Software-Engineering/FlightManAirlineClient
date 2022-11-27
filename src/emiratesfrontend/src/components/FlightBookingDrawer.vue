@@ -2,8 +2,10 @@
   <div class="debug">
     <v-card light class="flightdrawer-container">
       <v-card-text>
-        <v-row>
-          <v-icon class="ml-5"> mdi-close </v-icon>
+        <v-row align="center">
+          <v-btn class="ml-2" icon @click="closeTrigger()">
+            <v-icon> mdi-close </v-icon></v-btn
+          >
           <v-card-title>Select fare to Newark</v-card-title>
         </v-row>
       </v-card-text>
@@ -31,6 +33,14 @@
 <script>
 export default {
   name: "FlightBookingDrawer",
+  props: {
+    trigger: String,
+  },
+  methods: {
+    closeTrigger() {
+      this.$store.state[this.trigger] = false;
+    },
+  },
 };
 </script>
 <style>

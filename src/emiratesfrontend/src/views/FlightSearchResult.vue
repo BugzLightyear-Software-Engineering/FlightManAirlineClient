@@ -11,11 +11,8 @@
             <FlightFilters />
           </v-col>
           <v-col cols="9">
-            <v-btn color="success" class="mt-12" @click="overlay = !overlay">
-              Show Overlay
-            </v-btn>
-            <FlightCard />
-            <FlightCard />
+            <FlightCard @click.native="openDrawer()" />
+            <FlightCard @click.native="openDrawer()" />
             <FlightCard />
             <FlightCard />
             <FlightCard />
@@ -26,8 +23,10 @@
         </v-row>
       </v-container>
       <v-overlay :value="overlay">
-        <div class="overlaycont" @click="overlay = false">
-          <FlightBookingDrawer />
+        <div class="overlaycont">
+          <div class="closediv" @click="closeDrawer()"></div>
+          <!-- this is really bad but fuck it -->
+          <FlightBookingDrawer trigger="flight_drawer" />
         </div>
       </v-overlay>
     </div>
@@ -46,19 +45,32 @@ export default {
     FlightFilters,
     FlightBookingDrawer,
   },
-  data() {
-    return {
-      overlay: false,
-    };
+  computed: {
+    overlay() {
+      return this.$store.state.flight_drawer;
+    },
+  },
+  methods: {
+    openDrawer() {
+      this.$store.state.flight_drawer = true;
+    },
+    closeDrawer() {
+      this.$store.state.flight_drawer = false;
+    },
   },
 };
 </script>
 <style scoped>
 .overlaycont {
   display: flex;
+  position: relative;
   justify-content: flex-end;
   width: 100vw;
   /* border: solid 2px pink; */
+}
+.closediv {
+  /* border: solid 2px pink; */
+  flex: 1 1 auto;
 }
 .flight-result-container {
   display: flex;

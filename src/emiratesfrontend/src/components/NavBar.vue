@@ -3,8 +3,8 @@
     <div class="d-flex align-center">
       <div>
         <router-link to="/">
-          <v-btn diabled text>
-            <h2>FlightMan Expedia Client</h2>
+          <v-btn disabled text>
+            <h2 class="logo">FlightMan Expedia Client</h2>
           </v-btn>
         </router-link>
       </div>
@@ -12,3 +12,9 @@
     <v-spacer></v-spacer>
   </v-app-bar>
 </template>
+
+<style>
+.logo {
+  color: white !important;
+}
+</style>

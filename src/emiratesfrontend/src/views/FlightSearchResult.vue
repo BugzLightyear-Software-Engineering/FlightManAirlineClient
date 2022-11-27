@@ -25,7 +25,11 @@
           </v-col>
         </v-row>
       </v-container>
-      <v-overlay :value="overlay" @click="overlay = false"> </v-overlay>
+      <v-overlay :value="overlay">
+        <div class="overlaycont" @click="overlay = false">
+          <FlightBookingDrawer />
+        </div>
+      </v-overlay>
     </div>
   </div>
 </template>
@@ -33,12 +37,14 @@
 import FlightCard from "@/components/FlightCard.vue";
 import FlightFilters from "@/components/FlightFilters.vue";
 import FlightSearchCompressed from "@/components/FlightSearchCompressed.vue";
+import FlightBookingDrawer from "@/components/FlightBookingDrawer.vue";
 export default {
   name: "FlightSearchResult",
   components: {
     FlightSearchCompressed,
     FlightCard,
     FlightFilters,
+    FlightBookingDrawer,
   },
   data() {
     return {
@@ -47,7 +53,13 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
+.overlaycont {
+  display: flex;
+  justify-content: flex-end;
+  width: 100vw;
+  /* border: solid 2px pink; */
+}
 .flight-result-container {
   display: flex;
   flex-flow: column;

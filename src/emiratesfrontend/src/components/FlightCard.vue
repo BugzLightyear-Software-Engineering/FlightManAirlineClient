@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto my-7">
+  <v-card hover class="mx-auto my-7">
     <v-container class="d-flex flex-row">
       <v-col>
         <v-card-title>4:15pm - 6:15pm</v-card-title>

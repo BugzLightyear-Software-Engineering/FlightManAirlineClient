@@ -3,9 +3,6 @@ import NavBar from "@/components/NavBar";
 export default {
   components: { NavBar },
   name: "App",
-  data: () => ({
-    //
-  }),
 };
 </script>
 

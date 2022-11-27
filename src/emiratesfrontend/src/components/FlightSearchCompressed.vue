@@ -5,7 +5,7 @@
       <v-col>
         <v-btn-toggle
           @change="getTripType"
-          v-model="tripSelection"
+          v-model="usersearch.trip"
           group
           rounded
           color="blue"
@@ -19,8 +19,8 @@
     <v-row>
       <v-col>
         <v-autocomplete
-          v-model="values"
-          :items="items"
+          v-model="usersearch.source"
+          :items="airports"
           outlined
           rounded
           prepend-inner-icon="mdi-map-marker"
@@ -33,8 +33,8 @@
       <!-- dest airport text input -->
       <v-col>
         <v-autocomplete
-          v-model="values"
-          :items="items"
+          v-model="usersearch.dest"
+          :items="airports"
           outlined
           rounded
           prepend-inner-icon="mdi-map-marker"
@@ -43,11 +43,11 @@
       </v-col>
       <!-- depart date picker -->
       <v-col>
-        <DatePickerMenu pickerLabel="Departing" />
+        <DatePickerMenu pickerLabel="Departing" bindingDict="departdate" />
       </v-col>
       <!-- return date picker -->
-      <v-col v-if="tripSelection === 'roundtrip'">
-        <DatePickerMenu pickerLabel="Returning" />
+      <v-col v-if="usersearch.trip === 'roundtrip'">
+        <DatePickerMenu pickerLabel="Returning" bindingDict="returndate" />
       </v-col>
       <v-col class="d-flex flex-column">
         <v-btn large depressed color="primary" rounded>
@@ -66,8 +66,8 @@ export default {
   name: "FlightSearch",
   data() {
     return {
-      tripSelection: "roundtrip",
-      items: this.$store.state.airports,
+      usersearch: this.$store.state.user_search,
+      airports: this.$store.state.airports,
       values: null,
     };
   },
@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     getTripType() {
-      //   console.log(this.tripSelection);
+      this.$store.state.user_search.trip = this.usersearch.trip;
     },
   },
 };

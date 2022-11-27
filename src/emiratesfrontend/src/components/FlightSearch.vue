@@ -15,7 +15,7 @@
             <v-col>
               <v-btn-toggle
                 @change="getTripType"
-                v-model="tripSelection"
+                v-model="usersearch.trip"
                 group
                 rounded
                 color="blue"
@@ -29,8 +29,8 @@
           <v-row class="d-flex align-top">
             <v-col cols="4">
               <v-autocomplete
-                v-model="values"
-                :items="items"
+                v-model="usersearch.source"
+                :items="airports"
                 outlined
                 rounded
                 prepend-inner-icon="mdi-map-marker"
@@ -44,8 +44,8 @@
             <!-- dest airport text input -->
             <v-col cols="4">
               <v-autocomplete
-                v-model="values"
-                :items="items"
+                v-model="usersearch.dest"
+                :items="airports"
                 outlined
                 rounded
                 prepend-inner-icon="mdi-map-marker"
@@ -54,11 +54,17 @@
             </v-col>
             <!-- depart date picker -->
             <v-col>
-              <DatePickerMenu pickerLabel="Departing" />
+              <DatePickerMenu
+                pickerLabel="Departing"
+                bindingDict="departdate"
+              />
             </v-col>
             <!-- return date picker -->
-            <v-col v-if="tripSelection === 'roundtrip'">
-              <DatePickerMenu pickerLabel="Returning" />
+            <v-col v-if="usersearch.trip === 'roundtrip'">
+              <DatePickerMenu
+                pickerLabel="Returning"
+                bindingDict="returndate"
+              />
             </v-col>
           </v-row>
           <v-row class="d-flex justify-center">
@@ -71,6 +77,8 @@
                 min-width="300"
                 min-height="60"
                 rounded
+                class="mb-4"
+                @click="runSearch()"
               >
                 Search
                 <v-icon right dark> mdi-magnify </v-icon>
@@ -91,7 +99,8 @@ export default {
   data() {
     return {
       tripSelection: "roundtrip",
-      items: this.$store.state.airports,
+      airports: this.$store.state.airports,
+      usersearch: this.$store.state.user_search,
       values: null,
     };
   },
@@ -100,7 +109,14 @@ export default {
   },
   methods: {
     getTripType() {
-      //   console.log(this.tripSelection);
+      this.$store.state.user_search.trip = this.usersearch.trip;
+    },
+    runSearch() {
+      this.axios
+        .get("https://api.coindesk.com/v1/bpi/currentprice.json")
+        .then((response) => {
+          console.log(response.data);
+        });
     },
   },
 };

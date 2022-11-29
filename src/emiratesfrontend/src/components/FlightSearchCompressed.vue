@@ -50,7 +50,7 @@
         <DatePickerMenu pickerLabel="Returning" bindingDict="returndate" />
       </v-col>
       <v-col class="d-flex flex-column">
-        <v-btn large depressed color="primary" rounded>
+        <v-btn large depressed color="primary" rounded @click="runSearch()">
           Search
           <v-icon right dark> mdi-magnify </v-icon>
         </v-btn>
@@ -77,6 +77,29 @@ export default {
   methods: {
     getTripType() {
       this.$store.state.user_search.trip = this.usersearch.trip;
+    },
+    runSearch() {
+      const url =
+        this.$store.state.baseurl +
+        "/flights?Source Abbreviation=" +
+        this.usersearch.source +
+        "&Destination Abbreviation=" +
+        this.usersearch.dest;
+      this.axios
+        .get(
+          url,
+          {},
+          {
+            auth: {
+              username: this.$store.state.username,
+              password: this.$store.state.password,
+            },
+          }
+        )
+        .then((response) => {
+          this.$store.state.user_search_flights = response.data;
+          console.log(this.$store.state.user_search_flights);
+        });
     },
   },
 };

@@ -6,12 +6,15 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    user_id: "1",
+    user_id: "6ec95abc-2d4d-46ec-9174-bd595d380ed8",
+    password: "securedpasswordofsrishti", // wouldn't store this here obviously.. will fix later scout's honor [X]
+    baseurl: "http://localhost:8080/api",
     flight_drawer: false,
     airports: airports,
     airlines: airlines,
     //used to make queries for flights api
     // make sure to filter by user bookings
+    users: [],
     user_search: {
       trip: "roundtrip",
       source: "NYC",

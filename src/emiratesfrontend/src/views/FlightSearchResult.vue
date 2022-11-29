@@ -11,14 +11,13 @@
             <FlightFilters />
           </v-col>
           <v-col cols="9">
-            <FlightCard @click.native="openDrawer()" />
-            <FlightCard @click.native="openDrawer()" />
-            <FlightCard />
-            <FlightCard />
-            <FlightCard />
-            <FlightCard />
-            <FlightCard />
-            <FlightCard />
+            <!-- <FlightCard @click.native="openDrawer()" /> -->
+            <FlightCard
+              v-for="flight in flightlist"
+              :key="flight.flightId"
+              @click.native="openDrawer()"
+              :flight_object="flight"
+            />
           </v-col>
         </v-row>
       </v-container>
@@ -48,6 +47,9 @@ export default {
   computed: {
     overlay() {
       return this.$store.state.flight_drawer;
+    },
+    flightlist() {
+      return this.$store.state.user_search_flights;
     },
   },
   methods: {

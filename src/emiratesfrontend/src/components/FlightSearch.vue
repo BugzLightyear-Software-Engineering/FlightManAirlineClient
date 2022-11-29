@@ -112,10 +112,26 @@ export default {
       this.$store.state.user_search.trip = this.usersearch.trip;
     },
     runSearch() {
+      const url =
+        this.$store.state.baseurl +
+        "/flights?Source Abbreviation=" +
+        this.usersearch.source +
+        "&Destination Abbreviation=" +
+        this.usersearch.dest;
       this.axios
-        .get("https://api.coindesk.com/v1/bpi/currentprice.json")
+        .get(
+          url,
+          {},
+          {
+            auth: {
+              username: this.$store.state.username,
+              password: this.$store.state.password,
+            },
+          }
+        )
         .then((response) => {
-          console.log(response.data);
+          this.$store.state.user_search_flights = response.data;
+          console.log(this.$store.state.user_search_flights);
         });
     },
   },
